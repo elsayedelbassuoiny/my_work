@@ -1,0 +1,17 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: 
+      master
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: "login to Docker hub"
+      run: docker login --username ${{secrets.USER_NAME}} --password ${{secrets.DOCKERHUBTOKEN}}
+    - name: "Build the Docker image"
+      run: docker build . --file Dockerfile --tag ${{secrets.USER_NAME}}/sa-img
+    - name: "push img to docker hub"
+      run: docker push ${{secrets.USER_NAME}}/sa-img
