@@ -10,7 +10,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: "login to Docker hub"
-      run: docker login --username ${{secrets.USER_NAME}} --password ${{secrets.DOCKERHUBTOKEN}}
+      run: docker login --username ${{secrets.USER_NAME}} --password ${{secrets.DOKERHUBTOKEN}}
     - name: "Build the Docker image"
       run: docker build . --file Dockerfile --tag ${{secrets.USER_NAME}}/sa-img
     - name: "push img to docker hub"
